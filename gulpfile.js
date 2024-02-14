@@ -40,43 +40,42 @@ function previewReload(done) {
 /**
  * Process and compile SCSS files.
  *
- * 1: Integrating Tailwind CSS for styling.
- * 2: Adding vendor prefixes to CSS with Autoprefixer.
- * 3: Minifying CSS with CSSnano.
- * 4: Removing comments from CSS using PostCSS.
- * 5: Source SCSS files.
- * 6: Initialize sourcemaps for better debugging.
- * 7: Compile SCSS to CSS and handle errors.
- * 8: Integrate Tailwind CSS based on config.
- * 9: Add vendor prefixes to CSS for better browser compatibility.
- * 10: Minify CSS to reduce file size.
- * 11: Remove comments from CSS for production
- * 12: Concatenate all CSS files into one.
- * 13: Add ".min" suffix to the filename for minified version.
- * 14: Write sourcemaps to a separate file.
- * 15: Output the processed CSS files to the destination directory.
+ * 1: Adding vendor prefixes to CSS with Autoprefixer.
+ * 2: Minifying CSS with CSSnano.
+ * 3: Removing comments from CSS using PostCSS.
+ * 4: Source SCSS files.
+ * 5: Initialize sourcemaps for better debugging.
+ * 6: Compile SCSS to CSS and handle errors.
+ * 7: Add vendor prefixes to CSS for better browser compatibility.
+ * 8: Minify CSS to reduce file size.
+ * 9: Remove comments from CSS for production.
+ * 10: Concatenate all CSS files into one.
+ * 11: Add ".min" suffix to the filename for minified version.
+ * 12: Write sourcemaps to a separate file.
+ * 13: Output the processed CSS files to the destination directory.
  */
 function devStyles() {
-  const autoprefixer = require('autoprefixer') /* 2 */
-  const cssnano = require('cssnano') /* 3 */
-  const comments = require('postcss-discard-comments') /* 4 */
+  const autoprefixer = require('autoprefixer') /* 1 */
+  const cssnano = require('cssnano') /* 2 */
+  const comments = require('postcss-discard-comments') /* 3 */
 
   return gulp
-    .src(`${options.paths.src.styles}/*.scss`) /* 5 */
-    .pipe(sourcemaps.init()) /* 6 */
-    .pipe(sass().on('error', sass.logError)) /* 7 */
+    .src(`${options.paths.src.styles}/*.scss`) /* 4 */
+    .pipe(sourcemaps.init()) /* 5 */
+    .pipe(sass().on('error', sass.logError)) /* 6 */
     .pipe(
       postcss([
-        autoprefixer() /* 9 */,
-        cssnano() /* 10 */,
-        comments({ removeAll: true }) /* 11 */,
+        autoprefixer() /* 7 */,
+        cssnano() /* 8 */,
+        comments({ removeAll: true }) /* 9 */,
       ]),
     )
-    .pipe(concat({ path: 'styles.css' })) /* 12 */
-    .pipe(rename({ suffix: '.min' })) /* 13 */
-    .pipe(sourcemaps.write('.')) /* 14 */
-    .pipe(gulp.dest(options.paths.assets.css)) /* 15 */
+    .pipe(concat({ path: 'styles.css' })) /* 10 */
+    .pipe(rename({ suffix: '.min' })) /* 11 */
+    .pipe(sourcemaps.write('.')) /* 12 */
+    .pipe(gulp.dest(options.paths.assets.css)) /* 13 */
 }
+
 
 /**
  * Process and compile TypeScript files.
@@ -159,7 +158,7 @@ function devThirdParty() {
  * Watch for file changes and trigger corresponding tasks.
  *
  * 1: Watch PHP files and trigger devStyles and previewReload tasks.
- * 2: Watch Tailwind CSS configuration and SCSS files, trigger devStyles and previewReload tasks.
+ * 2: Watch SCSS files, trigger devStyles and previewReload tasks.
  * 3: Watch TypeScript files, trigger devScripts, devStyles, and previewReload tasks.
  * 4: Watch image files, trigger devImages and previewReload tasks.
  * 5: Watch font files, trigger devFonts and previewReload tasks.

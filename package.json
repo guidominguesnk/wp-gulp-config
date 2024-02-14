@@ -1,13 +1,14 @@
 {
   "name": "wp-gulp-config",
-  "version": "0.1.0",
+  "description": "Boost your WordPress themes with my WP Gulp Config! Simple Gulp boilerplate for smoother development",
+  "version": "1.0.0",
   "private": true,
   "author": "Gui Domingues <hello@guidomingues.com>",
+  "repository": "https://github.com/guidominguesnk/wp-gulp-config",
   "main": "gulpfile.js",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "gulp",
-    "build": "gulp prod",
     "prod": "gulp prod"
   },
   "devDependencies": {
@@ -16,12 +17,6 @@
     "autoprefixer": "^10.4.13",
     "browser-sync": "^2.27.10",
     "cssnano": "^5.1.15",
-    "eslint": "^8.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-config-stylelint": "^20.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "5.0.0-alpha.2",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",

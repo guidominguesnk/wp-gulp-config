@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "react-jsx",
     "module": "CommonJS",
     "target": "es5",
     "strict": true,

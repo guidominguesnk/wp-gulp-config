@@ -33,7 +33,6 @@
     "gulp-terser": "^2.1.0",
     "gulp-typescript": "6.0.0-alpha.1",
     "gulp-zip": "^5.1.0",
-    "log-symbols": "^4.1.0",
     "postcss": "^8.4.21",
     "postcss-discard-comments": "^6.0.0",
     "prettier": "^3.0.2",

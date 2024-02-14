@@ -16,7 +16,7 @@ const config = {
 /* Base folder paths. */
 const basePaths = ['src', 'assets', 'build', 'inc', 'admin', 'template-parts']
 
-/* Folder assets paths/ */
+/* Folder assets paths. */
 const folders = [
   'css',
   'scss',

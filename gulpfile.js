@@ -1,7 +1,6 @@
 const gulp = require('gulp')
 const clean = require('gulp-clean') /* Used to clean the assets folder for a fresh export. */
 const options = require('./build.config') /* Import paths and other options from config.js. */
-const logSymbols = require('log-symbols') /* Display symbolic console logs. */
 const rename = require('gulp-rename') /* Rename files. */
 const sourcemaps = require('gulp-sourcemaps') /* Generate sourcemaps for CSS and JS. */
 const sass = require('gulp-sass')(require('sass')) /* Compile SASS files. */
@@ -33,7 +32,7 @@ function livePreview(done) {
  * 3: Callback function to signal completion.
  */
 function previewReload(done) {
-  console.log(`\n\t${logSymbols.info}`, 'Reloading browser preview.\n') /* 1 */
+  console.log('\n\t🔄  Reloading browser preview.\n') /* 1 */
   browserSync.reload() /* 2 */
   done() /* 3 */
 }
@@ -195,7 +194,7 @@ function watchFiles() {
     gulp.series(devThirdParty, previewReload),
   ) /* 6 */
 
-  console.log(`\n\t${logSymbols.info}`, 'Watching for changes...\n') /* 7 */
+  console.log('\n\t🔥  Watching for changes...\n') /* 7 */
 }
 
 /**
@@ -210,8 +209,7 @@ function watchFiles() {
  */
 function devClean() {
   console.log(
-    `\n\t${logSymbols.info}`,
-    'Cleaning ASSETS folder for a fresh start.\n',
+    `\n\t✅  Cleaning ASSETS folder for a fresh start.\n`
   ) /* 1 */
 
   return gulp

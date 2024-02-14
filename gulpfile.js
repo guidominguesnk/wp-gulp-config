@@ -1,3 +1,9 @@
+/**
+ * @package WP Gulp Config
+ * @author Gui Domingues <hello@guidomingues.com>
+ * @link https://github.com/guidominguesnk/wp-gulp-config
+ */
+
 const gulp = require('gulp')
 const clean = require('gulp-clean') /* Used to clean the assets folder for a fresh export. */
 const options = require('./build.config') /* Import paths and other options from config.js. */

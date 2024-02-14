@@ -4,12 +4,19 @@
  * @link https://github.com/guidominguesnk/wp-gulp-config
  */
 
+/**
+ * General Gulp configuration settings.
+ *
+ * 1: Default port.
+ * 2: Choose an optimization level between 0 and 7 for PNG images.
+ * 3: % of compression for jpg, jpeg images (default is 75).
+ */
 const config = {
   proxy: 'gulp.local',
-  port: 3333 /* Default port. */,
+  port: 3333 /* 1 */,
   imagemin: {
-    png: 3 /* Select an optimization level between 0 and 7. */,
-    jpeg: 85 /* % of compression for jpg, jpeg images (default is 75) */,
+    png: 3 /* 2 */,
+    jpeg: 85 /* 3 */,
   },
 }
 
@@ -29,15 +36,18 @@ const folders = [
   'vendor',
 ]
 
+/* Object to store all project paths. */
 const paths = {
   root: './',
 }
 
+/* Iterate over base paths. */
 basePaths.forEach((base) => {
   paths[base] = {
     base: `./${base}`,
   }
 
+  /* Iterate over folders and convert the name to camelCase. */
   folders.forEach((folderName) => {
     const toCamelCase = folderName.replace(/\b-([a-z])/g, (_, c) =>
       c.toUpperCase(),
@@ -47,6 +57,7 @@ basePaths.forEach((base) => {
   })
 })
 
+/* Export configurations for use in the gulpfile.js. */
 module.exports = {
   config,
   paths,

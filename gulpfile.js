@@ -82,7 +82,6 @@ function devStyles() {
     .pipe(gulp.dest(options.paths.assets.css)) /* 13 */
 }
 
-
 /**
  * Process and compile TypeScript files.
  *
@@ -210,7 +209,6 @@ function watchFiles() {
  *    - The `read: false` option indicates that the content of the files doesn't need to be read.
  *    - The `allowEmpty: true` option ensures that the task doesn't fail if there are no matching files.
  * 3: Clean the ASSETS folder.
- *
  */
 function devClean() {
   console.log(
@@ -220,7 +218,7 @@ function devClean() {
   return gulp
     .src(options.paths.assets.base, {
       read: false /* 2 */,
-      allowEmpty: true /* 3 */,
+      allowEmpty: true /* 2 */,
     })
     .pipe(clean()) /* 3 */
 }
@@ -228,7 +226,7 @@ function devClean() {
 /**
  * Gulp configuration for the default task.
  *
- * 1: Clean the assets folder.
+ * 1: Clean the ASSETS folder.
  * 2: Run all tasks in parallel.
  * 3: Live preview build.
  * 4: Watch for live changes.

@@ -1,5 +1,7 @@
 # WP Gulp Config
 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
+
 This WP Gulp boilerplate offers a solid and feature-rich foundation for developing modern and optimized [WordPress](https://br.wordpress.org/) themes. With support for SCSS, TypeScript, image optimization, live preview, and much more, it streamlines the development process and ensures high-quality results.
 
 ## Features

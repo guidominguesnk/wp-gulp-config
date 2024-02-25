@@ -9,7 +9,7 @@ interface IConfig {
   port: number
   imagemin: {
     png: number
-    jpeg: number 
+    jpeg: number
   }
 }
 
@@ -20,7 +20,7 @@ interface IConfig {
  * 4. % of compression for jpg, jpeg images (default is 75).
  */
 const config: IConfig = {
-  proxy: 'gullp.local' /* 1 */,
+  proxy: 'gulp.local' /* 1 */,
   port: 3333 /* 2 */,
   imagemin: {
     png: 3 /* 3 */,

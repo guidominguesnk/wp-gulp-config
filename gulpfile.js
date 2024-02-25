@@ -19,23 +19,25 @@ const browserSync =
 /**
  * Initialize live preview using BrowserSync.
  *
- * 1. Initialize BrowserSync with specified proxy and port.
- * 2. Callback function to signal completion.
+ * 1: Initialize BrowserSync with specified proxy and port.
+ * 2: Hide the BrowserSync notification popup.
+ * 3: Callback function to signal completion.
  */
 function livePreview(done) {
   browserSync.init({
     proxy: options.config.proxy /* 1 */,
     port: options.config.port /* 1 */,
+    notify: false /* 2 */,
   })
-  done() /* 2 */
+  done() /* 3 */
 }
 
 /**
  * Reload the browser preview.
  *
- * 1. Log an information message indicating browser reload.
- * 2. Trigger browser reload using BrowserSync.
- * 3. Callback function to signal completion.
+ * 1: Log an information message indicating browser reload.
+ * 2: Trigger browser reload using BrowserSync.
+ * 3: Callback function to signal completion.
  */
 function previewReload(done) {
   console.log('\n\t🔄  Reloading browser preview.\n') /* 1 */
@@ -85,14 +87,14 @@ function devStyles() {
 /**
  * Process and compile TypeScript files.
  *
- * 1. Create TypeScript project based on tsconfig.json.
- * 2. Initialize sourcemaps for better debugging.
- * 3. Compile TypeScript to JavaScript and handle errors.
- * 4. Minify JavaScript with Terser.
- * 5. Concatenate all JavaScript files into one.
- * 6. Add ".min" suffix to the filename for minified version.
- * 7. Write sourcemaps to a separate file.
- * 8. Output the processed JavaScript files to the destination directory.
+ * 1: Create TypeScript project based on tsconfig.json.
+ * 2: Initialize sourcemaps for better debugging.
+ * 3: Compile TypeScript to JavaScript and handle errors.
+ * 4: Minify JavaScript with Terser.
+ * 5: Concatenate all JavaScript files into one.
+ * 6: Add ".min" suffix to the filename for minified version.
+ * 7: Write sourcemaps to a separate file.
+ * 8: Output the processed JavaScript files to the destination directory.
  */
 function devScripts() {
   const ts = require('gulp-typescript') /* 1 */
@@ -116,11 +118,11 @@ function devScripts() {
 /**
  * Optimize and compress image files.
  *
- * 1. Determine PNG and JPEG quality based on configuration.
- * 2. Set up plugins for image optimization.
- * 3. Source image files.
- * 4. Optimize images with configured plugins.
- * 5. Output the optimized images to the destination directory.
+ * 1: Determine PNG and JPEG quality based on configuration.
+ * 2: Set up plugins for image optimization.
+ * 3: Source image files.
+ * 4: Optimize images with configured plugins.
+ * 5: Output the optimized images to the destination directory.
  */
 function devImages() {
   const pngQuality = Number.isInteger(options.config.imagemin.png)
@@ -162,13 +164,13 @@ function devThirdParty() {
 /**
  * Watch for file changes and trigger corresponding tasks.
  *
- * 1. Watch PHP files and trigger devStyles and previewReload tasks.
- * 2. Watch SCSS files, trigger devStyles and previewReload tasks.
- * 3. Watch TypeScript files, trigger devScripts, devStyles, and previewReload tasks.
- * 4. Watch image files, trigger devImages and previewReload tasks.
- * 5. Watch font files, trigger devFonts and previewReload tasks.
- * 6. Watch vendor files, trigger devThirdParty and previewReload tasks.
- * 7. Log an information message indicating watching for changes.
+ * 1: Watch PHP files and trigger devStyles and previewReload tasks.
+ * 2: Watch SCSS files, trigger devStyles and previewReload tasks.
+ * 3: Watch TypeScript files, trigger devScripts, devStyles, and previewReload tasks.
+ * 4: Watch image files, trigger devImages and previewReload tasks.
+ * 5: Watch font files, trigger devFonts and previewReload tasks.
+ * 6: Watch vendor files, trigger devThirdParty and previewReload tasks.
+ * 7: Log an information message indicating watching for changes.
  */
 function watchFiles() {
   gulp.watch(['**/*.php'], gulp.series(devStyles, previewReload)) /* 1 */
@@ -204,11 +206,11 @@ function watchFiles() {
 /**
  * Clean the ASSETS folder for a fresh start.
  *
- * 1. Log an information message indicating the cleaning process.
- * 2. Source the ASSETS folder for cleaning.
+ * 1: Log an information message indicating the cleaning process.
+ * 2: Source the ASSETS folder for cleaning.
  *    - The `read: false` option indicates that the content of the files doesn't need to be read.
  *    - The `allowEmpty: true` option ensures that the task doesn't fail if there are no matching files.
- * 3. Clean the ASSETS folder.
+ * 3: Clean the ASSETS folder.
  */
 function devClean() {
   console.log(`\n\t✅  Cleaning ASSETS folder for a fresh start.\n`) /* 1 */
@@ -224,10 +226,10 @@ function devClean() {
 /**
  * Gulp configuration for the default task.
  *
- * 1. Clean the ASSETS folder.
- * 2. Run all tasks in parallel.
- * 3. Live preview build.
- * 4. Watch for live changes.
+ * 1: Clean the ASSETS folder.
+ * 2: Run all tasks in parallel.
+ * 3: Live preview build.
+ * 4: Watch for live changes.
  */
 exports.default = gulp.series(
   devClean /* 1 */,
@@ -245,26 +247,30 @@ exports.default = gulp.series(
 /**
  * Gulp task to create a production bundle by zipping specific files and folders.
  *
- * 1. Requires the 'gulp-zip' plugin for creating ZIP archives.
- * 2. Selects files and folders to include in the production bundle.
- * 3. Pipes the selected files through the 'gulp-zip' plugin.
- * 4. Specifies the name of the ZIP archive as 'theme.zip'.
- * 5. Sets the destination folder for the ZIP archive.
- * 6. Defines the 'prod' task, which runs the 'prodBundle' function.
+ * 1: Requires the 'gulp-zip' plugin for creating ZIP archives.
+ * 2: Selects files and folders to include in the production bundle.
+ * 3: Pipes the selected files through the 'gulp-zip' plugin.
+ * 4: Specifies the name of the ZIP archive as 'theme.zip'.
+ * 5: Sets the destination folder for the ZIP archive.
+ * 6: Defines the 'prod' task, which runs the 'prodBundle' function.
  */
 function prodBundle() {
   const zip = require('gulp-zip') /* 1 */
 
   return gulp
-    .src([
-      '**/assets/**',
-      '**/core/**',
-      '**/inc/**',
-      './style.css',
-      './*.php',
-      'screenshot.png',
-      'favicon.png',
-  ]) /* 2 */
+    .src(
+      [
+        './assets/**',
+        './core/**',
+        './inc/**',
+        './parts/**',
+        './style.css',
+        './*.php',
+        'screenshot.png',
+        'favicon.png',
+      ],
+      { base: '.' },
+    ) /* 2 */
     .pipe(zip('theme.zip')) /* 3, 4 */
     .pipe(gulp.dest('./')) /* 5 */
 }
